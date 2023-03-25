@@ -35,9 +35,13 @@
           <input
             type="text"
             id="autocomplete"
-            class="input-error input-xxlarge" />
-          <button class="sui-btn btn-xlarge btn-danger" type="button">
-            <router-link to="/search">搜索</router-link>
+            class="input-error input-xxlarge"
+            v-model="keyword" />
+          <button
+            class="sui-btn btn-xlarge btn-danger"
+            type="button"
+            @click="goSearch">
+            搜索
           </button>
         </form>
       </div>
@@ -48,6 +52,20 @@
 <script>
 export default {
   name: "Header",
+  data() {
+    return {
+      keyword: "",
+    };
+  },
+  methods: {
+    goSearch() {
+      this.$router.push({
+        name: "search",
+        query: { keyword: this.keyword },
+        params: { k: this.keyword },
+      });
+    },
+  },
 };
 </script>
 
